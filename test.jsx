@@ -23,6 +23,7 @@ interface IButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+// Компонент Button оптимизирован с помощью React.memo.
 const Button: React.FC<IButtonProps> = React.memo(({ onClick }) => {
   return (
     <button type="button" onClick={onClick}>
@@ -35,6 +36,7 @@ interface IUserInfoProps {
   user: User;
 }
 
+// Компонент UserInfo оптимизирован с помощью React.memo.
 const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user }) => {
   return (
     <table>
@@ -54,6 +56,7 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user }) => {
   );
 });
 
+// Добавлен кастомный хук useThrottle для задержки выполнения функции receiveRandomUser.
 const useThrottle = (callback: Function, delay: number) => {
   const lastRan = React.useRef(Date.now());
   return React.useCallback(
@@ -68,6 +71,7 @@ const useThrottle = (callback: Function, delay: number) => {
   );
 };
 
+// Использован React.useCallback для оптимизации колбэков.
 const App: React.FC = () => {
   const [item, setItem] = useState<User | null>(null);
 
